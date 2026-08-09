@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBU Nagpur - Landing & Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* ============ LANDING PAGE ============ */
+
+        .landing-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .landing-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .landing-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .landing-logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 30px;
+            object-fit: contain;
+            animation: fadeInDown 0.8s ease-in-out;
+        }
+
+        .landing-content h1 {
+            font-size: 2.5rem;
+            color: #003d7a;
+            margin-bottom: 10px;
+            font-weight: 700;
+            animation: fadeInUp 0.8s ease-in-out 0.1s both;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #ff6f00;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.8s ease-in-out 0.2s both;
+        }
+
+        .welcome-text {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-in-out 0.3s both;
+        }
+
+        .landing-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-in-out 0.4s both;
+        }
+
+        .btn {
+            padding: 12px 40px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #003d7a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #002847;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 61, 122, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: #ff6f00;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e55f00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
+        }
+
+        /* ============ LOGIN PAGE ============ */
+
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .login-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            animation: slideUp 0.6s ease-in-out;
+        }
+
+        .login-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            display: block;
+            object-fit: contain;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #003d7a;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        /* ============ AUTH TABS ============ */
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            color: #003d7a;
+            border-bottom-color: #ff6f00;
+        }
+
+        .tab-btn:hover {
+            color: #003d7a;
+        }
+
+        /* ============ FORMS ============ */
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .auth-form h2 {
+            font-size: 1.3rem;
+            color: #003d7a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            outline: none;
+            border-color: #ff6f00;
+            box-shadow: 0 0 5px rgba(255, 111, 0, 0.2);
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-group.checkbox input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .form-group.checkbox label {
+            margin: 0;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6f00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #e55f00;
+            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .forgot-password {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #003d7a;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password:hover {
+            color: #ff6f00;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-link a {
+            color: #003d7a;
+            text-decoration: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #ff6f00;
+        }
+
+        /* ============ ANIMATIONS ============ */
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============ RESPONSIVE DESIGN ============ */
+
+        @media (max-width: 768px) {
+            .landing-content h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .landing-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .login-box {
+                padding: 30px;
+            }
+
+            .login-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .login-box h1 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .landing-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .login-box {
+                padding: 20px;
+            }
+
+            .login-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .form-group input {
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+
+        /* ============ HIDE/SHOW SECTIONS ============ */
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============ LANDING PAGE SECTION ============ -->
+    <div id="landing-section" class="page-section active">
+        <div class="landing-page">
+            <div class="landing-container">
+                <div class="landing-content">
+                    <img src="file:///C:/Users/Piyush%20Khokale/Downloads/finallogo.png" alt="RBU Logo" class="landing-logo">
+                    <h1>Ramdeobaba University, Nagpur</h1>
+                    <p class="tagline">Learn | Innovate | Accomplish</p>
+                    <p class="welcome-text">Welcome to RBU Nagpur</p>
+                    
+                    <div class="landing-buttons">
+                        <button onclick="goToLogin('signin')" class="btn btn-primary">Sign In</button>
+                        <button onclick="goToLogin('login')" class="btn btn-secondary">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ LOGIN PAGE SECTION ============ -->
+    <div id="login-section" class="page-section">
+        <div class="login-page">
+            <div class="login-container">
+                <div class="login-box">
+                    <img src="file:///C:/Users/Piyush%20Khokale/Downloads/finallogo.png" alt="RBU Logo" class="login-logo">
+                    <h1>Ramdeobaba University, Nagpur</h1>
+                    
+                    <div class="auth-tabs">
+                        <button class="tab-btn active" data-tab="signin" onclick="switchTab('signin')">Sign In</button>
+                        <button class="tab-btn" data-tab="login" onclick="switchTab('login')">Login</button>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <form id="signin-form" class="auth-form active" onsubmit="handleSignIn(event)">
+                        <h2>Create Account</h2>
+                        <div class="form-group">
+                            <label for="signin-name">Full Name</label>
+                            <input type="text" id="signin-name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-email">Email Address</label>
+                            <input type="email" id="signin-email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-password">Password</label>
+                            <input type="password" id="signin-password" name="password" placeholder="Create a password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-confirm">Confirm Password</label>
+                            <input type="password" id="signin-confirm" name="confirm" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Create Account</button>
+                    </form>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                        <h2>Login to Your Account</h2>
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn-submit">Login</button>
+                        <a class="forgot-password" onclick="handleForgotPassword()">Forgot your password?</a>
+                    </form>
+
+                    <div class="back-link">
+                        <a onclick="goToHome()">← Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigate to login page
+        function goToLogin(tab) {
+            document.getElementById('landing-section').classList.remove('active');
+            document.getElementById('login-section').classList.add('active');
+            
+            if (tab === 'signin') {
+                switchTab('signin');
+            } else {
+                switchTab('login');
+            }
+        }
+
+        // Navigate back to home
+        function goToHome() {
+            document.getElementById('login-section').classList.remove('active');
+            document.getElementById('landing-section').classList.add('active');
+        }
+
+        // Switch between Sign In and Login tabs
+        function switchTab(tabName) {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const forms = document.querySelectorAll('.auth-form');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            forms.forEach(form => form.classList.remove('active'));
+
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(tabName + '-form').classList.add('active');
+        }
+
+        // Handle Sign In form submission
+        function handleSignIn(event) {
+            event.preventDefault();
+            const name = document.getElementById('signin-name').value;
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            const confirm = document.getElementById('signin-confirm').value;
+
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (name && email && password) {
+                alert('Account created successfully for ' + name + '!');
+                document.getElementById('signin-form').reset();
+            }
+        }
+
+        // Handle Login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const remember = document.getElementById('remember').checked;
+
+            if (email && password) {
+                alert('Login successful for ' + email + '!');
+                if (remember) {
+                    alert('This device will be remembered.');
+                }
+                document.getElementById('login-form').reset();
+            }
+        }
+
+        // Handle Forgot Password link
+        function handleForgotPassword() {
+            alert('Please check your email for password reset instructions.');
+        }
+    </script>
+</body>
+</html>
